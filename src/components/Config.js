@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import * as FlickrAPI from "../data/FlickrAPI";
-import { Photo } from "./Photo"
+import { Photo } from "./Photo";
 
 export const Config = props => {
   // Get the API key from local storage.
@@ -16,7 +16,7 @@ export const Config = props => {
     setTested(false);
 
     setRes(null);
-    FlickrAPI.search(apiKey, "people", 3, nextRes => {
+    FlickrAPI.search(apiKey, "people,food", 3, nextRes => {
       setRes(nextRes);
       setPending(false);
       setTested(true);
@@ -56,11 +56,7 @@ export const Config = props => {
           </h5>
         </div>
 
-        <div
-          id="config-form"
-          className="collapse"
-          data-parent="#accordion"
-        >
+        <div id="config-form" className="collapse" data-parent="#accordion">
           <div className="card-body">
             <form onSubmit={onSubmit}>
               <div className="form-group">
@@ -100,7 +96,9 @@ export const Config = props => {
                     <>
                       <div className="row">
                         {res.photos.photo.map(p => (
-                          <div key={p.id} className="col-sm"><Photo photo={p} /></div>
+                          <div key={p.id} className="col-sm">
+                            <Photo photo={p} />
+                          </div>
                         ))}
                       </div>
                       <br />
