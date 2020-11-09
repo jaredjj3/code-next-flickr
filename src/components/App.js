@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Config } from "./Config";
 
 export const App = () => {
   const [apiKey, setApiKey] = useState("");
 
-  const onApiKeyChange = nextApiKey => {
+  const onApiKeyChange = useCallback(nextApiKey => {
     setApiKey(nextApiKey);
-  };
+  }, []);
 
   return (
     <div className="container">
