@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ApiKeyInput } from "./ApiKeyInput";
+import { Config } from "./Config";
 
 export const App = () => {
   const [apiKey, setApiKey] = useState("");
@@ -10,7 +10,7 @@ export const App = () => {
 
   return (
     <div className="container">
-      <ApiKeyInput onApiKeyChange={onApiKeyChange} />
+      <Config onApiKeyChange={onApiKeyChange} />
       <hr />
     </div>
   );
