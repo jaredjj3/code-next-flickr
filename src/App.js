@@ -1,11 +1,17 @@
-import React from "react";
-import "./style.css";
+import React, { useState } from "react";
+import { ApiKeyInput } from "./ApiKeyInput";
 
-export default function App() {
+export const App = () => {
+  const [apiKey, setApiKey] = useState("");
+
+  const onApiKeyChange = nextApiKey => {
+    setApiKey(nextApiKey);
+  };
+
   return (
-    <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
+    <div className="container">
+      <ApiKeyInput onApiKeyChange={onApiKeyChange} />
+      <hr />
     </div>
   );
-}
+};
