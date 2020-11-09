@@ -10,14 +10,14 @@ export const Config = props => {
   const [apiKey, setApiKey] = useLocalStorage("FLICKR_API_KEY", "");
   const [pending, setPending] = useState(false);
   const [tested, setTested] = useState(false);
-  const [res, setRes] = useState({});
+  const [res, setRes] = useState(null);
 
   // Test that the API works.
   const testApi = async () => {
     setPending(true);
     setTested(false);
 
-    setRes({});
+    setRes(null);
     await FlickrAPI.search(apiKey, "people", 3, nextRes => {
       setRes(nextRes);
       setPending(false);
@@ -60,7 +60,7 @@ export const Config = props => {
 
         <div
           id="config-form"
-          className="collapse show"
+          className="collapse"
           data-parent="#accordion"
         >
           <div className="card-body">
@@ -96,7 +96,7 @@ export const Config = props => {
                 </button>
               </div>
 
-              {tested && (
+              {tested && res && (
                 <>
                   {res.stat === "ok" ? (
                     <>
