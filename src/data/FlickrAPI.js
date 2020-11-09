@@ -1,9 +1,10 @@
 import { debounce } from 'lodash';
 
+export const FLICKR_API_DEBOUNCED_MS = 1000;
+
 export const FLICKR_API_URL = "https://api.flickr.com/services/rest/";
 
-// Debounce is used to prevent accidentally spamming the API.
-export const search = debounce(async (apiKey, query, limit) => {
+export const search = debounce(async (apiKey, query, limit, onReceivedPhotos) => {
   const url = new URL(FLICKR_API_URL);
   url.searchParams.append("method", "flickr.photos.search");
   url.searchParams.append("api_key", apiKey);
@@ -14,5 +15,6 @@ export const search = debounce(async (apiKey, query, limit) => {
 
   const res = await fetch(url);
   const data = await res.text();
-  return JSON.parse(data);
-}, 1000, { leading: true });
+  const photos = JSON.parse(data);
+  onReceivedPhotos(photos);
+}, FLICKR_API_DEBOUNCED_MS, { leading: true, trailing: true });

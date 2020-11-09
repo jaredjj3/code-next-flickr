@@ -13,16 +13,15 @@ export const Config = props => {
 
   // Test that the API works. 
   const testApi = async () => {
-    console.log('called');
     setPending(true);
     setTested(false);
 
     setPhotos({});
-    const photos = await FlickrAPI.search(apiKey, "people", 3);
-    setPhotos(photos);
-
-    setPending(false);
-    setTested(true);
+    await FlickrAPI.search(apiKey, "people", 3, (nextPhotos) => {
+      setPhotos(nextPhotos);
+      setPending(false);
+      setTested(true);
+    });
   };
 
   // Handle input changes.
@@ -33,7 +32,7 @@ export const Config = props => {
   // Test that the API works. 
   const onSubmit = e => {
     e.preventDefault();
-    (async () => testApi())();
+    testApi();
   };
 
   // Allow the parent component to listen to api key changes.
