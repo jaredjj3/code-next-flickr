@@ -15,4 +15,4 @@ export const search = debounce(async (apiKey, query, limit) => {
   const res = await fetch(url);
   const data = await res.text();
   return JSON.parse(data);
-}, 1000);
+}, 1000, { leading: true });

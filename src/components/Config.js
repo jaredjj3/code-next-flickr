@@ -9,17 +9,17 @@ export const Config = props => {
   const [tested, setTested] = useState(false);
   const [photos, setPhotos] = useState({});
 
+  // Test that the API works. 
   const testApi = async () => {
     setPending(true);
     setTested(false);
+
     setPhotos({});
-    try {
-      const photos = await FlickrAPI.search(apiKey, "people", 3);
-      setPhotos(photos);
-    } finally {
-      setPending(false);
-      setTested(true);
-    }
+    const photos = await FlickrAPI.search(apiKey, "people", 3);
+    setPhotos(photos);
+
+    setPending(false);
+    setTested(true);
   };
 
   // Handle input changes.
@@ -27,9 +27,9 @@ export const Config = props => {
     setApiKey(e.target.value);
   };
 
+  // Test that the API works. 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(apiKey);
     testApi();
   };
 
@@ -63,7 +63,7 @@ export const Config = props => {
           <div className="card-body">
             <form onSubmit={onSubmit}>
               <div className="form-group">
-                <label for="api-key">Flickr API Key</label>
+                <label htmlFor="api-key">Flickr API Key</label>
                 <input
                   type="text"
                   className="form-control"
