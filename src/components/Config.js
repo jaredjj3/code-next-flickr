@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import * as FlickrAPI from "../data/FlickrAPI";
+import { Photo } from "./Photo"
 
 window.FlickrAPI = FlickrAPI;
 
@@ -9,16 +10,16 @@ export const Config = props => {
   const [apiKey, setApiKey] = useLocalStorage("FLICKR_API_KEY", "");
   const [pending, setPending] = useState(false);
   const [tested, setTested] = useState(false);
-  const [photos, setPhotos] = useState({});
+  const [res, setRes] = useState({});
 
-  // Test that the API works. 
+  // Test that the API works.
   const testApi = async () => {
     setPending(true);
     setTested(false);
 
-    setPhotos({});
-    await FlickrAPI.search(apiKey, "people", 3, (nextPhotos) => {
-      setPhotos(nextPhotos);
+    setRes({});
+    await FlickrAPI.search(apiKey, "people", 3, nextRes => {
+      setRes(nextRes);
       setPending(false);
       setTested(true);
     });
@@ -29,7 +30,7 @@ export const Config = props => {
     setApiKey(e.target.value);
   };
 
-  // Test that the API works. 
+  // Test that the API works.
   const onSubmit = e => {
     e.preventDefault();
     testApi();
@@ -97,15 +98,23 @@ export const Config = props => {
 
               {tested && (
                 <>
-                  {photos && photos.stat === "ok" ? (
-                    <div className="alert alert-success">
-                      <p>FlickrAPI.search was successful:</p>
-                      <pre>{JSON.stringify(photos, null, 2)}</pre>
-                    </div>
+                  {res.stat === "ok" ? (
+                    <>
+                      <div className="row">
+                        {res.photos.photo.map(p => (
+                          <div key={p.id} className="col-sm"><Photo photo={p} /></div>
+                        ))}
+                      </div>
+                      <br />
+                      <div className="alert alert-success">
+                        <p>FlickrAPI.search was successful:</p>
+                        <pre>{JSON.stringify(res, null, 2)}</pre>
+                      </div>
+                    </>
                   ) : (
                     <div className="alert alert-warning">
                       <p>FlickrAPI.search had an issue:</p>
-                      <pre>{JSON.stringify(photos, null, 2)}</pre>
+                      <pre>{JSON.stringify(res, null, 2)}</pre>
                     </div>
                   )}
                 </>
