@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import * as FlickrAPI from "../data/FlickrAPI";
 
+window.FlickrAPI = FlickrAPI;
+
 export const Config = props => {
   // Get the API key from local storage.
   const [apiKey, setApiKey] = useLocalStorage("FLICKR_API_KEY", "");
