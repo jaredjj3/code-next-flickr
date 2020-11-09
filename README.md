@@ -1,3 +1,3 @@
 # code-next-flickr
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/code-next-flickr)
+[Fork on StackBlitz ⚡️](https://stackblitz.com/fork/code-next-flickr)
