@@ -3,8 +3,6 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import * as FlickrAPI from "../data/FlickrAPI";
 import { Photo } from "./Photo"
 
-window.FlickrAPI = FlickrAPI;
-
 export const Config = props => {
   // Get the API key from local storage.
   const [apiKey, setApiKey] = useLocalStorage("FLICKR_API_KEY", "");
@@ -13,12 +11,12 @@ export const Config = props => {
   const [res, setRes] = useState(null);
 
   // Test that the API works.
-  const testApi = async () => {
+  const testApi = () => {
     setPending(true);
     setTested(false);
 
     setRes(null);
-    await FlickrAPI.search(apiKey, "people", 3, nextRes => {
+    FlickrAPI.search(apiKey, "people", 3, nextRes => {
       setRes(nextRes);
       setPending(false);
       setTested(true);
