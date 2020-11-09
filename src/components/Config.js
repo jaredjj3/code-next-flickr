@@ -13,6 +13,7 @@ export const Config = props => {
 
   // Test that the API works. 
   const testApi = async () => {
+    console.log('called');
     setPending(true);
     setTested(false);
 
@@ -32,7 +33,7 @@ export const Config = props => {
   // Test that the API works. 
   const onSubmit = e => {
     e.preventDefault();
-    testApi();
+    (async () => testApi())();
   };
 
   // Allow the parent component to listen to api key changes.
