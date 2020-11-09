@@ -4,6 +4,8 @@ export const FLICKR_API_DEBOUNCED_MS = 1000;
 
 export const FLICKR_API_URL = "https://api.flickr.com/services/rest/";
 
+// We use debounce to prevent people from accidentally spamming this.
+// https://lodash.com/docs/4.17.15#debounce
 export const search = debounce(async (apiKey, tags, limit, onResponse) => {
   // https://www.flickr.com/services/api/flickr.photos.search.html
   const url = new URL(FLICKR_API_URL);
