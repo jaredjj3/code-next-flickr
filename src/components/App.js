@@ -10,6 +10,7 @@ export const App = () => {
 
   return (
     <div className="container">
+      <br />
       <Config onApiKeyChange={onApiKeyChange} />
       <hr />
     </div>
