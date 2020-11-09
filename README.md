@@ -4,7 +4,7 @@
 
 This is a lesson for the [Code Next](https://codenext.withgoogle.com/) React club.
 
-In this lesson, engineers will replicate SnapShot ([repo](https://github.com/Yog9/SnapShot), [demo](https://yog9.github.io/SnapShot/#/SnapScout)) a sample React App for their final projects.
+In this lesson, engineers will replicate SnapShot ([repo](https://github.com/Yog9/SnapShot), [demo](https://yog9.github.io/SnapShot/#/SnapScout)) using the [Flickr API](https://www.flickr.com/services/api/) for their final projects
 
 ## API Key
 
