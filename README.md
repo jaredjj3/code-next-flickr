@@ -10,7 +10,7 @@ In this lesson, engineers will replicate SnapShot ([repo](https://github.com/Yog
 
 Many APIs provide an API key, which is the mechanism by which requests are made to an API on your behalf. Usage of API keys are usually tracked. That way, if a particular API key holder spams the API, that API key can be disabled without affecting other API key holders.
 
-### **Please do not commit your API key nor secret to your repository**.
+### **⚠️⚠️⚠️Please do not commit your API key nor secret to your repository⚠️⚠️⚠️**
 
 This prevents other users from using your key and making you responsible for requests made with that key.
 
